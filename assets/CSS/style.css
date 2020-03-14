@@ -1,0 +1,572 @@
+
+/*body*/
+body {
+    max-width:960px;
+    font-family: Helvetica,Arial,Sans-serif;
+    font-size: 13px;
+    width: auto;
+    margin: 0;
+    max-height: auto;
+    overflow: hidden;
+
+}
+
+
+
+/*navigation bar*/
+nav>ul{
+    position: absolute;
+    top: 100px;
+    right: 10px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav>ul a:hover {
+    background-color: plum;
+    color: white;
+    opacity: 90%;
+}
+
+nav>ul>li{
+    float: right;
+    font-size: 14px;
+}
+
+nav>ul>li>a{
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 2px 8px;
+    text-decoration: none;
+    color: floralwhite;
+}
+
+/*search bar*/
+
+div#searchbar {
+    font-size: 13px;
+    color: #231f20;
+    display: block;
+    height: 125px;
+    width: 100%;
+    position: absolute;
+    position: -webkit-sticky;
+    background: #6F2E66;
+    border-bottom: 5px solid #000;
+
+}
+
+/*search box*/
+#searchbox{
+    display: block;
+    position: absolute;
+    top: 90px;
+    width: 300px;
+    background-position: -394px 0;
+    background-repeat: no-repeat;
+    border: 10px;
+    left: 14px;
+    z-index: 999;
+}
+
+/*search-icon*/
+form input[type=text] {
+    padding: 1px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+form button {
+    float: left;
+    width: 14%;
+    padding: 1px;
+    background: plum    ;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+form::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+form button:hover {
+    background: purple;
+}
+
+
+/*images*/
+#rgulogo{
+    width: 300px;
+}
+#campusmaplogo{
+    width: 200px;
+    position: absolute;
+    top: 30px;
+    right: 16px;
+    border-radius: 14px;
+}
+#map{
+
+    height: 92%;
+    max-width: auto;
+    position:absolute;
+    top: 130px;
+    right: 0px;
+    left: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+
+/*#maps {
+    height: 790px;
+    width: 100%;
+    position: fixed;
+    top: 130px;
+    left: 30px;
+    right: 0px;
+
+
+}
+
+ */
+/*#mySidebar{
+    font-family: Helvetica, Arial, Sans-serif;
+    font-size: 13px;
+    color: #231f20;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: block;
+    top: 130px;
+    margin: 0;
+    padding: 10px 10px 30px 10px;
+    height: 500px;
+    max-width: 290px;
+    line-height: 35px;
+    border-right: 0px solid #676767;
+    border-radius: 0px;
+    background: #fff;
+    z-index: 1;
+}
+ */
+.sidebar {
+    font-family: Helvetica, Arial, Sans-serif;
+    font-size: 13px;
+    height: 82.6%;
+    width:310px;
+    position: absolute;
+    z-index: 1;
+    top: 130px;
+    left: 0;
+    overflow-x: hidden;
+    display: block;
+    margin: 0;
+    transition: 0.5s;
+    padding:10px 10px 30px 10px;
+    overflow-y: scroll;
+    line-height: 25px;
+    border-right: 0px solid #676767;
+    border-radius: 0px;
+    background: #fff;
+}
+
+#mySidebar{
+    padding-right: 0px;
+    transition: 0.7s;
+
+}
+
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+    transition: 1s;
+}
+
+.sidebar a:hover {
+    color: black;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    background-color: lightgrey;
+    width: 16px;
+    top: 0px;
+    right: 2px;
+    font-size: 25px;
+    margin-left: 50px;
+    padding: 3px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    border-radius: 6px;
+    opacity: 40%;
+}
+
+
+.openbtn {
+    font-size: 15px;
+    cursor: pointer;
+    background-color: purple;
+    opacity: 60%;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn {
+    position: absolute;
+    top: 130px;
+    transition: 0.5s;
+    padding:7px 14px 7px 14px;
+    line-height: 25px;
+    border-right: 0px solid #676767;
+    border-radius: 2px;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 10px;
+}
+
+.sidebar {
+    position: absolute;
+    max-height: 100%;
+    background-color: whitesmoke;
+
+
+}
+
+.sidebar::-webkit-scrollbar {
+    padding-left: 0px;
+    margin: 0px;
+    width: 10px;
+    background-color: dimgray;
+    -webkit-border-radius: 20px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: grey;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 20px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    background:grey;
+    height: 23px;
+    opacity: inherit;
+    margin: 0px;
+    padding: 0px;
+    z-index: 1;
+}
+
+#footer-left{
+    font-size: 12px;
+    color: #fff;
+    padding: 0;
+    float: left;
+    margin: 8px 0 0 10px;
+    bottom: 0;
+}
+
+#footer-left a{
+    color: white;
+    text-decoration: none;
+}
+
+#footer-right{
+    font-size: 12px;
+    color: #fff;
+    padding: 0;
+    float: right;
+    margin: 8px 10px 0 0;
+    bottom: 0;
+
+
+}
+
+
+#footer-right a{
+    color: white;
+    text-decoration: none;
+
+    text-align: center;
+    padding: 2px 4px;
+}
+
+/*My Location Modal*/
+#popup {
+    display: none;
+    border: 2px purple solid;
+    width: 860px; height: 75%;
+    top:90px; left:320px;
+    background-color: lightgrey;
+    z-index: 10;
+    padding: 1em;
+    margin: 0px;
+    position: fixed;
+    border-radius: 5px;
+    transition: width 5s;
+}
+
+#iframe {
+    max-width: 99%;
+    margin: 0;
+    padding: 0px;
+    width: 99%;
+    font-family: Helvetica,Arial,Sans-serif;
+    font-size: 13px;
+    color: purple;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    height: 660px;
+
+}
+
+
+#page {
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+    padding: 2em;
+    position: absolute;
+}
+
+.darken { background: rgba(60, 63, 65, 0.7); }
+
+#iframe { border: 0; }
+
+html, body, #page { height: 100%; }
+
+
+/*Bus Times*/
+#popupBT {
+    display: none;
+    border: 2px purple solid;
+    width: 860px; height: 75%;
+    top:90px; left:320px;
+    background-color: lightgrey;
+    z-index: 10;
+    padding: 1em;
+    margin: 0px;
+    position: fixed;
+    border-radius: 5px;
+    transition: width 5s;
+    overflow: hidden;
+}
+
+#iframeBT {
+    max-width: 99%;
+    margin: 0;
+    padding: 0px;
+    width: 99%;
+    font-family: Helvetica,Arial,Sans-serif;
+    font-size: 13px;
+    color: purple;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    height: 677px;
+    overflow: hidden;
+}
+
+
+#pageBT {
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 9;
+
+    position: absolute;
+    overflow: hidden;
+}
+
+.darken { background: rgba(60, 63, 65, 0.7); }
+
+#iframeBT { border: 0; }
+
+html, body, #pageBT { height: 100%; }
+
+
+/* Mapbox */
+.mapboxgl-popup {
+    padding-bottom: 20px;
+}
+
+.mapboxgl-popup-content h3 {
+    background:purple;
+    color:#fff;
+    margin:0;
+    display:block;
+    padding:10px;
+    border-radius:3px 3px 0 0;
+    font-weight:700;
+    /*margin-top:15px;*/
+}
+
+.mapboxgl-popup-content h4 {
+    margin:0;
+    display:block;
+    padding: 10px 10px 10px 10px;
+    font-weight:400;
+}
+
+.mapboxgl-popup-content section {
+    padding:10px;
+}
+
+
+/*
+ CSS for the main interaction
+*/
+.tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+}
+
+.tabset .tab-panel {
+    display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+}
+
+/*
+ Styling
+*/
+
+
+.tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 15px 25px;
+    border: 1px solid transparent;
+    border-bottom: 0;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: 10px;
+    width: 22px;
+    height: 4px;
+    background: #8d8d8d;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+    color: #06c;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+    background: #06c;
+}
+
+.tabset > input:checked + label {
+    border-color: #ccc;
+    border-bottom: 1px solid #fff;
+    margin-bottom: -5px;
+}
+
+.tab-panel {
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+}
+
+thumbnail {
+    max-width: 40%;
+}
+
+.italic { font-style: italic; }
+.small { font-size: 0.8em; }
+
+/** LIGHTBOX MARKUP **/
+
+.lightbox {
+    /** Default lightbox to hidden */
+    display: none;
+
+    /** Position and style */
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+}
+
+.lightbox img {
+    /** Pad the lightbox image */
+    max-width: 90%;
+    max-height: 80%;
+    margin-top: 2%;
+}
+
+.lightbox:target {
+    /** Remove default browser outline */
+    outline: none;
+
+    /** Unhide lightbox **/
+    display: block;
+}
+

@@ -361,7 +361,7 @@ form button:hover {
     position: absolute;
     left: 5px;
     top: 5px;
-    height: 660px;
+    height: 99%;
 
 }
 
@@ -411,7 +411,7 @@ html, body, #page { height: 100%; }
     position: absolute;
     left: 5px;
     top: 5px;
-    height: 677px;
+    height: 99%;
     overflow: hidden;
 }
 

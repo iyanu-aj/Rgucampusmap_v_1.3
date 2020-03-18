@@ -1,4 +1,3 @@
-
 /*body*/
 body {
     max-width:960px;
@@ -619,5 +618,9 @@ thumbnail {
 
     /** Unhide lightbox **/
     display: block;
+}
+
+.fancybox-slide {
+    height: 80%;
 }
 

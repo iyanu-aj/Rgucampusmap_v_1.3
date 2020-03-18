@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>RGU Campus Map</title>
     <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="assets/CSS/modstyle.css">
     <link href='https://fonts.googleapis.com/css?family=Hind:400,300|Bangers' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href=assets/CSS/unsemantic-grid-responsive-tablet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,7 +12,8 @@
     <link rel="stylesheet" href="assets/CSS/mapbox-gl.css" type="text/css">
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js'></script>
     <link rel="stylesheet"  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
-    <script type="text/javascript" src = "assets/js/customData.geojson.js"></script>  <!--Sample database for search bar -->
+    <script type="text/javascript" src = "assets/js/customData.geojson.js"></script>
+     <!--Sample database for search bar -->
 </head>
 
 <body>
@@ -23,10 +25,10 @@
         <a href="Main.html">
         <img src="assets/images/rgulogo.jpg" alt="RGU Logo" id="rgulogo"></a>
 
-        <form id="searchbox">
-            <input type="text" name="search" placeholder="Search RGU Maps" maxlength="2000">
-            <button type="submit"><i class="fa fa-search"></i></button>
-            <!--<input type="button" value="Browse" class=" "> -->
+<!--        <form id="searchbox">-->
+<!--            <input type="text" name="search" placeholder="Search RGU Maps" maxlength="2000">-->
+<!--            <button type="submit"><i class="fa fa-search"></i></button>-->
+<!--            &lt;!&ndash;<input type="button" value="Browse" class=" "> &ndash;&gt;-->
         </form>
         <a href="Main.html">
             <img src="assets/images/campusmaplogo.jpg"  alt="Campus Map" id="campusmaplogo"></a>
@@ -34,12 +36,11 @@
         <!--NAVIGATION START-->
         <nav>
             <ul>
-                <li><a href="#"> Browse </a> </li>
-                <li><a href="#"> Help </a> </li>
-                <li><a href="#"> Feedback </a> </li>
-                <li><a href="#"> Link </a> </li>
-                <li><a href="#"> Embed </a> </li>
-                <li><a href="#"> Print </a> </li>
+                <li><a href="https://www.rgu.ac.uk/about"> About RGU </a> </li>
+                <li><a href="Help.html"> Help </a> </li>
+                <li><a href="Help.html"> Feedback </a> </li>
+                <li><a href="Help.html"> Open times </a> </li>
+                <li><a href="Parking.html"> Parking </a> </li>
                 <li><a href="BusTimes.html" id="bustimes">Bus Times</a></li>
             </ul>
         </nav>
@@ -70,23 +71,113 @@
         <h3>Sample searches:</h3>
         <li><b>Search the map</b></li>
         <ul>
-            <li><a href=""> Bus Stop </a></li>
-            <li><a href="#"> Main Eating Area </a></li>
-            <li><a href="#"> Medical Center </a></li>
-            <li><a href="#"> RGU Union </a></li>
+            <li><a href="EatingArea.html"> Main Eating Area </a></li>
             <li><a href="Mylocation.html" id="mylocation">My Location</a></li>
         </ul>
         <li><b>Locate buildings</b></li>
         <ul>
-            <li><a href="#"> The Sir Ian Wood Building </a></li>
-            <li><a href="#"> The Ishbel Gordon Building </a></li>
-            <li><a href="#"> Aberdeen Buisness School </a></li>
+            <li><a href="build_siwb.html" id="siwb"> The Sir Ian Wood Building </a></li>
+            <li><a href="build_igb.html" id="igb"> The Ishbel Gordon Building </a></li>
+            <li><a href="build_abs.html" id="abs"> Aberdeen Buisness School </a></li>
+            <li><a href="#"> Medical Center </a></li>
+            <li><a href="#"> RGU Union </a></li>
             <li><a href="#"> Gray's School of Art </a></li>
         </ul>
     </article>
 
 </div>
-<!-- BUS TIMES CODE-->
+
+<section id="maps">
+
+<!--abs popup start-->
+<div id="pageabs"></div>
+<div id="popupabs">
+    <iframe id="iframeabs"></iframe>
+</div>
+
+<script>document.getElementById("popupabs").showpopup = function() {
+    document.getElementById("popupabs").style.display = "block";
+    document.getElementById('iframeabs').src = "build_abs.html";
+    document.getElementById('pageabs').className = "darken";
+    document.getElementById("pageabs").style.display = "block";
+}
+
+document.getElementById("abs").onclick = function(e) {
+    e.preventDefault();
+    document.getElementById("popupabs").showpopup();
+}
+
+document.getElementById('pageabs').onclick = function() {
+    if(document.getElementById("popupabs").style.display == "block") {
+        document.getElementById("popupabs").style.display = "none";
+        document.getElementById("pageabs").style.display = "none";
+        document.getElementById('pageabs').className = "";
+    }
+};
+</script>
+
+    <!--igb popup start-->
+    <section id="maps">
+        <!--abs popup start-->
+        <div id="pageigb"></div>
+        <div id="popupigb">
+            <iframe id="iframeigb"></iframe>
+        </div>
+
+        <script>document.getElementById("popupigb").showpopup = function() {
+            document.getElementById("popupigb").style.display = "block";
+            document.getElementById('iframeigb').src = "build_igb.html";
+            document.getElementById('pageigb').className = "darken";
+            document.getElementById("pageigb").style.display = "block";
+        }
+
+        document.getElementById("igb").onclick = function(e) {
+            e.preventDefault();
+            document.getElementById("popupigb").showpopup();
+        }
+
+        document.getElementById('pageigb').onclick = function() {
+            if(document.getElementById("popupigb").style.display == "block") {
+                document.getElementById("popupigb").style.display = "none";
+                document.getElementById("pageigb").style.display = "none";
+                document.getElementById('pageigb').className = "";
+            }
+        };
+        </script>
+
+<!--        siwb popup start-->
+
+
+        <section id="maps">
+            <!--abs popup start-->
+            <div id="pagesiwb"></div>
+            <div id="popupsiwb">
+                <iframe id="iframesiwb"></iframe>
+            </div>
+
+            <script>document.getElementById("popupsiwb").showpopup = function() {
+                document.getElementById("popupsiwb").style.display = "block";
+                document.getElementById('iframesiwb').src = "build_siwb.html";
+                document.getElementById('pagesiwb').className = "darken";
+                document.getElementById("pagesiwb").style.display = "block";
+            }
+
+            document.getElementById("siwb").onclick = function(e) {
+                e.preventDefault();
+                document.getElementById("popupsiwb").showpopup();
+            }
+
+            document.getElementById('pagesiwb').onclick = function() {
+                if(document.getElementById("popupsiwb").style.display == "block") {
+                    document.getElementById("popupsiwb").style.display = "none";
+                    document.getElementById("pagesiwb").style.display = "none";
+                    document.getElementById('pagesiwb').className = "";
+                }
+            };
+            </script>
+
+        <!--siwb popup start-->
+    <!-- BUS TIMES CODE-->
 
 <section id="maps">
 <div id="pageBT">

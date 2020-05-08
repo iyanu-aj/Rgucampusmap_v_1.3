@@ -9,7 +9,6 @@
     <link rel="stylesheet" href=assets/CSS/unsemantic-grid-responsive-tablet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js"></script>
-    <link rel="stylesheet" href="assets/CSS/mapbox-gl.css" type="text/css">
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js'></script>
     <link rel="stylesheet"  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
     <script type="text/javascript" src = "assets/js/customData.geojson.js"></script>
@@ -17,6 +16,11 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src ='https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.js'></script>
     <link rel="stylesheet" href="assets/CSS/jquery.fancybox.min.css" type="text/css"/>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/CSS/pcss.css">
+    <link rel="stylesheet" href="assets/CSS/mapbox-gl.css" type="text/css">
+
 </head>
 
 <body>
@@ -248,7 +252,505 @@ document.getElementById('pageBT').onclick = function() {
                                 <!--Mapbox map START-->
 
     <div id="map"></div>
-    <script type="text/javascript" src = "assets/js/mapbox-map.js"></script>  <!--Calling for Mapbox-map Javascript-->
+    <nav id='filter-group' class='filter-group'></nav>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiMTkxMzY0OCIsImEiOiJjazZxOGt0ZGUxYnpqM25seWs5dmd3OXAwIn0.1s0vMz3TjjKdS2bioM9_KQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            hash: true,
+            style: 'mapbox://styles/1913648/ck7rdfc6t0k8t1iqrvyml7i1z', //MAP LAYER STYLE
+            center: [-2.141, 57.119], //CENTRE COORDINATES OF THE MAP WHEN THE FIRST TIME THE MAP IS LOADED
+            zoom: 16 //ZOOM LEVEL 16
+
+        });
+
+
+        // Original ES6 Class— https://github.com/tobinbradley/mapbox-gl-pitch-toggle-control
+        // export default class PitchToggle {
+        class PitchToggle {
+            constructor({ bearing = -20, pitch = 70, minpitchzoom = null }) {
+                this._bearing = bearing;
+                this._pitch = pitch;
+                this._minpitchzoom = minpitchzoom;
+            }
+
+            onAdd(map) {
+                this._map = map;
+                let _this = this;
+
+                this._btn = document.createElement("button");
+                this._btn.className = "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
+                this._btn.type = "button";
+                this._btn["aria-label"] = "Toggle Pitch";
+                this._btn.onclick = function() {
+                    if (map.getPitch() === 0) {
+                        let options = { pitch: _this._pitch, bearing: _this._bearing };
+                        if (_this._minpitchzoom && map.getZoom() > _this._minpitchzoom) {
+                            options.zoom = _this._minpitchzoom;
+                        }
+                        map.easeTo(options);
+                        _this._btn.className =
+                            "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-2d";
+                    } else {
+                        map.easeTo({ pitch: 0, bearing: 0 });
+                        _this._btn.className =
+                            "mapboxgl-ctrl-icon mapboxgl-ctrl-pitchtoggle-3d";
+                    }
+                };
+
+                this._container = document.createElement("div");
+                this._container.className = "mapboxgl-ctrl-group mapboxgl-ctrl";
+                this._container.appendChild(this._btn);
+
+                return this._container;
+            }
+
+            onRemove() {
+                this._container.parentNode.removeChild(this._container);
+                this._map = undefined;
+            }
+        }
+
+        /* Idea from Stack Overflow https://stackoverflow.com/a/51683226  */
+        class MapboxGLButtonControl {
+            constructor({
+                            className = "",
+                            title = "",
+                            eventHandler = evtHndlr
+                        }) {
+                this._className = className;
+                this._title = title;
+                this._eventHandler = eventHandler;
+            }
+
+            onAdd(map) {
+                this._btn = document.createElement("button");
+                this._btn.className = "mapboxgl-ctrl-icon" + " " + this._className;
+                this._btn.type = "button";
+                this._btn.title = this._title;
+                this._btn.onclick = this._eventHandler;
+
+                this._container = document.createElement("div");
+                this._container.className = "mapboxgl-ctrl-group mapboxgl-ctrl";
+                this._container.appendChild(this._btn);
+
+                return this._container;
+            }
+
+            onRemove() {
+                this._container.parentNode.removeChild(this._container);
+                this._map = undefined;
+            }
+        }
+
+
+
+        /* Add Controls to the Map */
+        map.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+        map.addControl(new PitchToggle({ minpitchzoom: 17 }), "bottom-right");
+
+
+
+        map.on('load', function () {
+// Add a source for the state polygons.
+            map.addSource('areas', {
+                'type': 'geojson',
+                'data':
+                    'https://raw.githubusercontent.com/1913648/data/master/pol.geojson'
+            });
+
+// Add a layer showing the state polygons.
+            map.addLayer({
+                'id': 'polygons',
+                'type': 'fill',
+                'source': 'areas',
+                'paint': {
+                    'fill-color': 'rgba(200, 100, 240, 0.4)',
+                    'fill-outline-color': 'rgba(200, 100, 240, 1)'
+                }
+            });
+
+// When a click event occurs on a feature in the states layer, open a popup at the
+// location of the click, with description HTML from its properties.
+            map.on('click', 'polygons', function (e) {
+                new mapboxgl.Popup()
+                    .setLngLat(e.lngLat)
+                    .setHTML(
+                        '<h3>' + e.features[0].properties.Building_name + '</h3>' +
+                        '<div class="tabset">' +
+                        '<input type="radio" name="tabset" id="tab1" aria-controls="info" checked>' +
+                        '<label for="tab1">Info</label>' +
+                        '<input type="radio" name="tabset" id="tab2" aria-controls="department">' +
+                        '<label for="tab2">Departments</label>' +
+                        '<div class="tab-panels">' +
+                        '<section id="info" class="tab-panel">' +
+                        '<p>' + '<b>' + "OPENING HOURS" + '</b>' + '<br>' + '<br>' +
+                        '<b>' + e.features[0].properties.SEM1 +
+                        '<ul>' + '<li>' + '</b>' + "MONDAY - FRIDAY" + '&nbsp;' + e.features[0].properties.oh1 + '</li>' +
+                        '<li>' + "SATURDAY & SUNDAY" + '&nbsp;' + e.features[0].properties.OH2 + '</li>' + '</ul>' +
+                        '<p>' + '<b>' + e.features[0].properties.SEM2 +
+                        '<ul>' + '<li>' + '</b>' + e.features[0].properties.OTHERS1 + '&nbsp;' + e.features[0].properties.OH3 + '</li>' +
+                        '<li>' + e.features[0].properties.OTHERS2 + '&nbsp;' + e.features[0].properties.OH4 + '</li>' + '</ul>' +
+                        '</p>' +
+                        ' </section>' +
+                        '<section id="department" class="tab-panel">' +
+                        e.features[0].properties.DP1 + '</br>' +
+                        '</br>' + e.features[0].properties.DP2 + '</br>' +
+                        '</br>' + e.features[0].properties.DP3 + '</br>' +
+                        '</br>' + e.features[0].properties.DP4 +
+                        ' </section>' +
+                        '</div>')
+                    .addTo(map);
+            });
+
+// Change the cursor to a pointer when the mouse is over the states layer.
+            map.on('mouseenter', 'polygons', function () {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+// Change it back to a pointer when it leaves.
+            map.on('mouseleave', 'polygons', function () {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+
+    </script>
+
+    <script>
+        var markers = {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "properties": {
+                    "name": "Parking",
+                    "marker-symbol": "parking",
+                    "cat":"Parking"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [-2.1302037148478234, 57.119045057416116]
+                }
+            },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.1306097132118396, 57.1194608215427]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.131507111149375, 57.119370441293995]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.135224489978441, 57.11967829590654]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.1378651874134107, 57.11940658353362]
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.138748297222776, 57.11937362679106]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.139479027194369, 57.11928303845872]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.1407570402874114,
+                            57.119022022981795]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [  -2.1442407877794665,
+                            57.118669919154485]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Parking",
+                        "marker-symbol": "parking",
+                        "cat":"Parking"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [  -2.1485333930755246,
+                            57.11894316518291]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Library",
+                        "marker-symbol": "library",
+                        "cat":"Library"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.1350908791726226,
+                            57.11867009362015]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Costa, Jamie's Deli & Eros Cafe",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.1345041713166495,
+                            57.11857656014351]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "RGU: Sport Starbucks Cafe",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.137520881790266,
+                            57.119001583130114]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "53.3 Degrees North Coffee Bar & Food Counter",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.148721052832201,
+                            57.11846019879772]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Subway",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [ -2.1390214454977468,
+                            57.11905760584628]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Superbox",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.138842546007311,
+                            57.11908380899749]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Foot Hall (Vegan & Vegetarian available) & Costa",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.1360466651541685,
+                            57.11853463209141]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Costa, Basement Cafe & Fresh off the Chopping Board",
+                        "marker-symbol": "restaurant",
+                        "cat":"Eating Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.1446548683131823,
+                            57.118372109078905]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Art Materials Shop",
+                        "marker-symbol": "shop",
+                        "cat":"Shop Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.148459972525245,
+                            57.11863969024998]
+
+                    }
+                },
+                {
+                    "type": "Feature",
+                    "properties": {
+                        "name": "Deeview Student Store",
+                        "marker-symbol": "shop",
+                        "cat":"Shop Area"
+                    },
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [-2.1377890735578546,
+                            57.11910078721425]
+
+                    }
+                }
+            ]
+        };
+
+        var filterGroup = document.getElementById('filter-group');
+
+
+        map.on('load', function () {
+            // Add marker data as a new GeoJSON source.
+            map.addSource("markers", {
+                "type": "geojson",
+                "data": markers
+            });
+
+            var layerIdCollection = [];
+
+            markers.features.forEach(function (feature) {
+                var symbol = feature.properties['marker-symbol'];
+                var cat = feature.properties['cat'];
+                var layerID = 'poi-' + symbol;
+                layerIdCollection.push(layerID);
+
+
+                // Add a layer for this symbol type if it hasn't been added already.
+                if (!map.getLayer(layerID)) {
+                    map.addLayer({
+                        "id": layerID,
+                        "type": "symbol",
+                        "source": "markers",
+                        "layout": {
+                            "icon-image": symbol + "-15",
+                            "icon-allow-overlap": true
+                        },
+                        "filter": ["==", "marker-symbol", symbol]
+                    });
+
+
+                    feature.properties["description"] = "<div>" + feature.properties.name + "</div>";
+
+                    // Add checkbox and label elements for the layer.
+                    var input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.id = layerID;
+                    input.checked = true;
+                    filterGroup.appendChild(input);
+
+                    var label = document.createElement('label');
+                    label.setAttribute('for', layerID);
+                    label.textContent = cat;
+                    filterGroup.appendChild(label);
+
+                    // When the checkbox changes, update the visibility of the layer.
+                    input.addEventListener('change', function (e) {
+                        map.setLayoutProperty(layerID, 'visibility',
+                            e.target.checked ? 'visible' : 'none');
+                    });
+                }
+            });
+
+
+        });
+
+
+    </script>
+    <!--Calling for Mapbox-map Javascript-->
 
 </section>
 
@@ -287,9 +789,9 @@ document.getElementById('pageBT').onclick = function() {
 </footer>
 <!--FOOTER END-->
 
-
-</html>
-
-
+</section>
+        </section>
+    </section>
+</section>
 </body>
 </html>

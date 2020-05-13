@@ -18,10 +18,10 @@
 
     h1{
         font-size: 50px;
-        color: #712177;
+        color: #fb5cef;
     }
     section{
-        font-family: "Arial Nova Light";
+        font-family: Helvetica,Arial,Sans-serif;
     }
     .button {
         border: none;
@@ -36,7 +36,7 @@
     }
     .container{
         background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+        background-color: rgba(0,0,0, 0.7); /* Black w/opacity/see-through */
         color: white;
         position: absolute;
         top: 50%;
@@ -51,6 +51,8 @@
 /*---------background photo---------------*/
     body, html {
         height: 100%;
+        font-family: Helvetica,Arial,Sans-serif;
+
     }
 
     .bg-image {
@@ -87,22 +89,11 @@
             <h3>Rate your Overall Experience</h3>
             <form class="clearfix" action="https://formspree.io/mdowkbkn" method="POST">
             <div class="rating">
-                <input type="radio" name="name" id="Excellent"><label for="Excellent">
-                <p>Excellent</p>
-            </label><br>
-                <input type="radio" name="name" id="Very Good"><label for="Very Good">
-                <p>Very Good</p>
-            </label><br>
-                <input type="radio" name="name" id="star3"><label for="star3">
-                <p>Good</p>
-            </label><br>
-                <input type="radio" name="name" id="star4"><label for="star4">
-                <p>Poor</p>
-            </label><br>
-                <input type="radio" name="name" id="star5"><label for="star5">
-                <p>Very Poor</p>
-
-            </label>
+                <input type="radio" name="name" value="Excellent">Excellent<br>
+                <input type="radio" name="name" value="Very Good">Very Good<br>
+                <input type="radio" name="name" value="Good"> Good<br>
+                <input type="radio" name="name" value="Poor">Poor<br>
+                <input type="radio" name="name" value="Very Poor">Very Poor
             </div>
             </form>
         </section>

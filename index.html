@@ -26,26 +26,26 @@
 <body>
 <header>
 
-    <!--SEARC.H BAR--->
+    <!--SEARCH BAR--->
     <div id="searchbar">
         <a href="index.html">
-        <img src="assets/images/rgulogo.jpg" alt="RGU Logo" id="rgulogo"></a>
+        <img src="assets/images/rgulogo.png" alt="RGU Logo" id="rgulogo"></a>
 
 <!--        <form id="searchbox">-->
 <!--            <input type="text" name="search" placeholder="Search RGU Maps" maxlength="2000">-->
 <!--            <button type="submit"><i class="fa fa-search"></i></button>-->
-<!--            &lt;!&ndash;<input type="button" value="Browse" class=" "> &ndash;&gt;-->
-        </form>
+<!--            <input type="button" value="Browse" class=" ">
+        &lt;!&ndash;</form>&ndash;&gt;-->
+
         <a href="index.html">
-            <img src="assets/images/campusmaplogo.jpg"  alt="Campus Map" id="campusmaplogo"></a>
+            <img src="assets/images/campusmaplogo.jpg" alt="Campus Map" id="campusmaplogo"></a>
 
         <!--NAVIGATION START-->
         <nav>
             <ul>
-                <li><a href="https://www.rgu.ac.uk/about"> About RGU </a> </li>
                 <li><a href="feedback.html"data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "600px"}}}' id="prk">Feedback</a></li>
-                <li><a href=""> Open times </a> </li>
-                <li><a href="Parking.html"data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}' id="prk"> Parking </a></li>
+                <li><a href="newsfeed.html"data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}' id="prk"> Newsfeed </a></li>
+                <li><a href="Parking.html"data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px" , "height" : "700px"}}}' id="prk"> Parking </a></li>
                 <li><a href="BusTimes.html" id="bustimes">Bus Times</a></li>
             </ul>
         </nav>
@@ -55,43 +55,39 @@
 
 </header>
 
-
+<!--SAMPLE SIDEBAR START-->
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <article>
-        <h3> Hi! Welcome to the RGU Campus Map</h3>
-        <p>Not sure of how to find your lecture rooms?
-            Finding your way around school made easy.</p>
-        <p><b>Map Instructions:</b></p>
-        <ul>
-            <li>Click on <img src="assets/images/search.png" height="15" width="15" alt="Search instruction"> to find rooms and locations </li>
-            <li>Click on <img src="assets/images/bus.png" height="15" width="15" alt="Bus instruction"> to view bus times</li>
-            <li>Click on <img src="assets/images/marker.png" height="15" width="15" alt="Marker Instruction"/> markers to display more information about the specific location</li>
-            <li>Click on <img src="assets/images/search.png" height="15" width="15" alt="Search instruction"> to find rooms and locations </li>
-            <li>Click on <img src="assets/images/parking.png" height="15" width="15"/> parking to view parking details</li>
-        </ul>
+        <h3>Welcome to RGU Campus Map!</h3>
+        <p>Not sure of how to find your lecture rooms? Finding your way around school made easy.</p>
+        <p style="color:black"><b>Map Instructions:</b></p>
+        <dl>
+            <dt><i class="arrow right"></i> Click on <img src="assets/images/search.png" height="15" width="15" alt="Search instruction"> to find rooms and locations</dt>
+            <dt><i class="arrow right"></i> Click on <img src="assets/images/bus.png" height="15" width="15" alt="Bus instruction"> to view bus times</dt>
+            <dt><i class="arrow right"></i> Click on <img src="assets/images/marker.png" height="15" width="15" alt="Marker Instruction"/> markers to display more information about the specific location</dt>
+            <dt><i class="arrow right"></i> Click on <img src="assets/images/parking.png" height="15" width="15"/> parking to view parking details</dt>
+        </dl>
 
     </article>
-    <!--INSTRUCTION END-->
 
-    <!--SAMPLE SEARCHES START-->
     <article>
         <h3>Find Your Location:</h3>
         <ul>
             <li><a href="Mylocation.html" id="mylocation">My Location</a></li>
         </ul>
-        <h3>Main Buildings</h3>
+        <h3>Main Buildings:</h3>
         <ul>
-
-            <li><a href="build_siwb.html" data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}'>The Sir Ian Wood Building
-            </a></li>
+            <li><a href="build_siwb.html" data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}'>The Sir Ian Wood Building</a></li>
             <li><a href="build_igb.html" data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}'> The Ishbel Gordon Building </a></li>
             <li><a href="build_abs.html" data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}'> Aberdeen Buisness School </a></li>
             <li><a href="build_gsoa.html"data-fancybox data-options='{"type" : "iframe", "iframe" : {"preload" : false, "css" : {"width" : "1000px"}}}'> Gray's School of Art </a></li>
         </ul>
-    </article>
 
+    </article>
 </div>
+<!--SAMPLE SIDEBAR END-->
+
 
 <section id="maps">
 
@@ -366,8 +362,8 @@ document.getElementById('pageBT').onclick = function() {
                 'type': 'fill',
                 'source': 'areas',
                 'paint': {
-                    'fill-color': 'rgba(200, 100, 240, 0.4)',
-                    'fill-outline-color': 'rgba(200, 100, 240, 1)'
+                    'fill-color': 'rgba(113, 33, 119, 0.4)',
+                    'fill-outline-color': 'rgba(113, 33, 119, 1)'
                 }
             });
 
@@ -416,6 +412,7 @@ document.getElementById('pageBT').onclick = function() {
         });
 
     </script>
+
     <script>
         var markers = {
             "type": "FeatureCollection",

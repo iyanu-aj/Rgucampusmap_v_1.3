@@ -42,6 +42,19 @@ nav>ul>li>a{
     text-decoration: none;
     color: floralwhite;
 }
+/*arrows in the sidebar start*/
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+/*arrows in the sidebar end*/
 
 /*search bar*/
 
@@ -53,7 +66,7 @@ div#searchbar {
     width: 100%;
     position: absolute;
     position: -webkit-sticky;
-    background: #6F2E66;
+    background: #712177;
     border-bottom: 5px solid #000;
 
 }
@@ -85,7 +98,7 @@ form button {
     float: left;
     width: 14%;
     padding: 1px;
-    background: plum    ;
+    background: plum;
     color: white;
     font-size: 17px;
     border: 1px solid grey;
@@ -102,14 +115,18 @@ form::after {
 }
 
 form button:hover {
-    background: purple;
+    background: #712177;
 }
 
 
 /*images*/
 #rgulogo{
     width: 300px;
+    position: absolute;
+    top: 25px;
+    left: 15px;
 }
+
 #campusmaplogo{
     width: 200px;
     position: absolute;
@@ -162,9 +179,18 @@ form button:hover {
     z-index: 1;
 }
  */
+
+/*sidebar*/
+h3{
+    font-family: Helvetica, Arial, Sans-serif;
+    color: #712177;
+    font-size: 17px;
+}
+
 .sidebar {
     font-family: Helvetica, Arial, Sans-serif;
-    font-size: 13px;
+    font-size: 14px;
+    color: #818181;
     height: 100%;
     width:310px;
     position: absolute;
@@ -178,7 +204,7 @@ form button:hover {
     padding:10px 10px 30px 10px;
     overflow-y: scroll;
     line-height: 25px;
-    border-right: 0px solid #676767;
+    border-right: 0px solid #646464;
     border-radius: 0px;
     background: #fff;
 }
@@ -193,14 +219,14 @@ form button:hover {
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 15px;
-    color: #818181;
+    font-size: 14px;
+    color: #646464;
     display: block;
     transition: 1s;
 }
 
 .sidebar a:hover {
-    color: black;
+    color: #646464;
 }
 
 .sidebar .closebtn {
@@ -222,7 +248,7 @@ form button:hover {
 .openbtn {
     font-size: 15px;
     cursor: pointer;
-    background-color: purple;
+    background-color: #712177;
     opacity: 60%;
     color: white;
     padding: 10px 15px;
@@ -337,7 +363,7 @@ form button:hover {
 /*My Location Modal*/
 #popup {
     display: none;
-    border: 2px purple solid;
+    border: 2px #712177 solid;
     width: 860px; height: 75%;
     top:90px; left:320px;
     background-color: lightgrey;
@@ -356,7 +382,7 @@ form button:hover {
     width: 99%;
     font-family: Helvetica,Arial,Sans-serif;
     font-size: 13px;
-    color: purple;
+    color: #712177;
     position: absolute;
     left: 5px;
     top: 5px;
@@ -386,7 +412,7 @@ html, body, #page { height: 100%; }
 /*Bus Times*/
 #popupBT {
     display: none;
-    border: 2px purple solid;
+    border: 2px #712177 solid;
     width: 860px; height: 75%;
     top:90px; left:320px;
     background-color: lightgrey;
@@ -406,7 +432,7 @@ html, body, #page { height: 100%; }
     width: 99%;
     font-family: Helvetica,Arial,Sans-serif;
     font-size: 13px;
-    color: purple;
+    color: #712177;
     position: absolute;
     left: 5px;
     top: 5px;
@@ -438,7 +464,7 @@ html, body, #pageBT { height: 100%; }
 
 #popupabs {
     display: none;
-    border: 2px purple solid;
+    border: 2px #712177 solid;
     width: 860px; height: 75%;
     top:90px; left:320px;
     background-color: lightgrey;
@@ -458,7 +484,7 @@ html, body, #pageBT { height: 100%; }
     width: 99%;
     font-family: Helvetica,Arial,Sans-serif;
     font-size: 13px;
-    color: purple;
+    color: #712177;
     position: absolute;
     left: 5px;
     top: 5px;
@@ -491,7 +517,7 @@ html, body, #pageabs { height: 100%; }
 }
 
 .mapboxgl-popup-content h3 {
-    background:purple;
+    background:#712177;
     color:#fff;
     margin:0;
     display:block;

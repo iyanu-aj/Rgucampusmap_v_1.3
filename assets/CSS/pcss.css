@@ -101,7 +101,8 @@ body { margin:0; padding:0; }
 
 .filter-group {
     font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
+    font-weight: 400;
+    letter-spacing: 2px ;
     position: absolute;
     top: 20%;
     right: 10px;
@@ -124,8 +125,9 @@ body { margin:0; padding:0; }
     display: none;
 }
 
+
 .filter-group input[type=checkbox] + label {
-    background-color: #d48beb;
+    background-color: #712177;
     display: block;
     cursor: pointer;
     padding: 10px;
@@ -133,13 +135,19 @@ body { margin:0; padding:0; }
 }
 
 .filter-group input[type=checkbox] + label {
-    background-color: #d48beb;
+    background-color: #712177;
     text-transform: capitalize;
+}
+
+.filter-group input[type=checkbox] + label:hover {
+    background-color: #712177;
+    text-transform: capitalize;
+    color: #f7a7fb;
 }
 
 .filter-group input[type=checkbox] + label:hover,
 .filter-group input[type=checkbox]:checked + label {
-    background-color: #d48beb;
+    background-color: #733477;
 }
 
 .filter-group input[type=checkbox]:checked + label:before {
@@ -167,3 +175,4 @@ body { margin:0; padding:0; }
 .mapboxgl-ctrl-pitchtoggle-2d {
     background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCI+ICAgIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkeT0iLjM1ZW0iIHN0eWxlPSJmb250LXNpemU6IDE0cHg7IGZvbnQtZmFtaWx5OiAnSGVsdmV0aWNhIE5ldWUnLEFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmOyBmb250LXdlaWdodDogYm9sZDsgdGV4dC1hbmNob3I6IG1pZGRsZTsiPjJEPC90ZXh0Pjwvc3ZnPg==);
 }
+

@@ -14,41 +14,108 @@
     <link rel="stylesheet" href="form.css">
 </head>
 
+<style>
+
+    h1{
+        font-size: 50px;
+        color: #712177;
+    }
+    section{
+        font-family: "Arial Nova Light";
+    }
+    .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #712177;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+    }
+    .container{
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        width: 80%;
+        padding: 20px;
+
+    }
+
+/*---------background photo---------------*/
+    body, html {
+        height: 100%;
+    }
+
+    .bg-image {
+        /* The image used */
+        background-image: url("assets/images/rguimg2.jpg");
+
+        /* Add the blur effect */
+        filter: blur(6px);
+        -webkit-filter: blur(6px);
+
+        /* Full height */
+        height: 100%;
+
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+
 <body class="bck">
-<div class="container">
-    <div class="col-md-6 col-md-offset-3 form-container">
+<div class="bg-image"></div>
+    <div class="container">
+
         <!--MAIN SECTION START -->
         <section>
             <br>
-            <h2>Feedback Page</h2>
-            <p>Thank you for using RGUMaps.
-            <p>We value your feedback so please leave your rating and comments below.</p>
+
+            <h1 align="center"><b>Feedback Page</b></h1>
+            <br>
+            <center><p>Thank you for using RGU Campus Map!
+            <p>We value your feedback so please leave your rating and comments below.</p></center>
             <h3>Rate your Overall Experience</h3>
-            <form method="post"  action="aqq.php" enctype="multipart/form-data">
-                <label>Rating</label>
-                <select name ="ratingds">
-                    <option value="Poor">Poor</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Good">Good</option>
-                    <option value="Very Good">Very Good</option>
-                </select>
-                <br>
-                <br>
+            <div class="rating">
+                <input type="radio" name="star" id="star1"><label for="star1">
+                <p>Excellent</p>
+            </label><br>
+                <input type="radio" name="star" id="star2"><label for="star2">
+                <p>Very Good</p>
+            </label><br>
+                <input type="radio" name="star" id="star3"><label for="star3">
+                <p>Good</p>
+            </label><br>
+                <input type="radio" name="star" id="star4"><label for="star4">
+                <p>Poor</p>
+            </label><br>
+                <input type="radio" name="star" id="star5"><label for="star5">
+                <p>Very Poor</p>
+
+            </label>
+            </div>
         </section>
-        <br>
+
         <!-- COMMENTS SECTION START -->
         <div class="col-md-6 col-md-offset-3 comments-section">
             <!-- comment form -->
             <form class="clearfix" action="index.php" method="post" id="comment_form">
-                <h3>Share your Feedback</h3>
-                <p>&#x1F447;</p>
+                <h3>Share your Feedback &#x1F447;</h3>
                 <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-                <input type="button" onclick="myFunction()" value="Submit">
+                <input type="button" onclick="myFunction()" value="Submit" class="button">
             </form>
             <!-- COMMENTS SECTION END -->
             <!--MAIN SECTION END-->
         </div>
     </div>
-</div>
 </body>
 </html>

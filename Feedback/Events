@@ -1,0 +1,249 @@
+HTML and CSS for Feedbackpage
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Page</title>
+
+<!--MAIN SECTION START -->
+<section>
+    <h2>RGU Maps Feedback Page</h2>
+    <p>Thank you for using RGUMaps. We value your feedback so please leave your rating and comments below.</p>
+    <h3>Rate your Overall Experience</h3>
+    <form method="post"  action="aqq.php" enctype="multipart/form-data">
+            <label>Rating</label>
+            <select name ="ratingds">
+                <option value="Poor">Poor</option>
+                <option value="Fair">Fair</option>
+                <option value="Good">Good</option>
+                <option value="Very Good">Very Good</option>
+            </select>
+        <br>
+        <br>
+</section>
+<!-- COMMENTS SECTION START -->
+<div class="col-md-6 col-md-offset-3 comments-section">
+    <!-- comment form -->
+    <div class="col-md-6 col-md-offset-3 comments-section">
+        <!-- comment form -->
+        <form class="clearfix" action="aq.php" method="post" id="comment_form">
+            <h3>Share your Feedback</h3>
+            <p>&#x1F447;</p>
+            <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+            <p><input type="submit" value="submit" name="submit"></p>
+        </form>
+        <!-- COMMENTS SECTION END -->
+        <!--MAIN SECTION END-->
+        <footer>
+            <p>RGU Maps 2020</p>
+        </footer>
+        
+PHP/SQL File (aqq.php)
+</body>
+</html>
+<?php
+$host = '';
+$user = '';
+$password = '';
+$database = '';
+
+$conn = mysqli_connect('', '', '','');
+require 'connection.php';
+if (isset($_POST["submit"]))
+{
+    $rating= $_POST["ratingds"];
+    $feedback=$_POST["comment_text"];
+    $sql = "INSERT into userfeedback(rating,userfeedback) VALUES('$rating','$feedback')";
+    if(mysqli_query($conn,$sql)){
+
+        echo "Thanks for your feedback";
+    }
+    else{
+        echo "Sorry your message has not been recieved, please try later";
+    }
+}
+
+?>
+
+
+Summary File for access to view Feedback
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }</style>
+</head>
+<body>
+<h3>The summary of users views</h3>
+</body>
+</html>
+<?php
+$host = '';
+$user = '';
+$password = '';
+$database = '';
+require 'connection.php';
+
+
+$conn = new mysqli($host, $user, $password, $database);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$administrator = 'rgumaps2020';
+$sql = "SELECT userfeedbackID, rating, userfeedback FROM usersfeedback where password = $administrator";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table><tr><th>userid</th><th>rating</th><th>comments</th></tr>";
+
+    while($row = $result->fetch_assoc()) {
+        echo "<tr><td>".$row['userfeedbackID']."</td><td>".$row['rating']."</td><td>".$row['userfeedback']."</td></tr>";
+    }
+    echo "</table>";
+} else {
+    echo "There isn't any Feedback...";
+}
+$conn->close();
+?>
+
+File with HTML/CSS star rating
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Page</title>
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="CSSY.css">
+    <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<!--MAIN SECTION START -->
+<section>
+<h2>RGU Maps Feedback Page</h2>
+<p>Thank you for using RGUMaps. We value your feedback so please leave your rating and comments below.</p>
+<h3>Rate your Overall Experience</h3>
+    <form method="post"  action="aq.php" enctype="multipart/form-data">
+<div class="rating">
+    <input type="radio" name="star" id="star1"><label for="star1">
+    </label>
+    <input type="radio" name="star" id="star2"><label for="star2">
+    </label>
+    <input type="radio" name="star" id="star3"><label for="star3">
+    </label>
+    <input type="radio" name="star" id="star4"><label for="star4">
+    </label>
+    <input type="radio" name="star" id="star5"><label for="star5">
+    </label>
+    <p><input type="submit" value="submit" name="submit"></p>
+</div>
+    <br>
+    <br>
+</section>
+<!-- COMMENTS SECTION START -->
+<div class="col-md-6 col-md-offset-3 comments-section">
+    <!-- comment form -->
+    <div class="col-md-6 col-md-offset-3 comments-section">
+        <!-- comment form -->
+        <form class="clearfix" action="aq.php" method="post" id="comment_form">
+            <h3>Share your Feedback</h3>
+            <p>&#x1F447;</p>
+            <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+            <p><input type="submit" value="submit" name="submit"></p>
+        </form>
+    <!-- COMMENTS SECTION END -->
+    <!--MAIN SECTION END-->
+    <footer>
+        <p>RGU Maps 2020</p>
+    </footer>
+
+</body>
+</html>
+CSS
+body{
+    max-width:960px;
+    margin-left: auto;
+    margin-right:auto;
+}
+.rating
+{
+    position: absolute;
+    top:22%;
+    left:25%;
+    transform: translate(-50%,-50%) rotateY(180deg);
+    display: flex;
+}
+.rating input
+{
+    display: none;
+}
+.rating label:before
+{
+    content: '\f005';
+    font-family: fontAwesome, serif;
+    position:relative;
+    display: block;
+    font-size: 40px;
+    color: #cccccc;
+}
+.rating label:after
+{
+    content: '\f005';
+    font-family: fontAwesome, serif;
+    position:absolute;
+    display: block;
+    font-size: 40px;
+    color: #1f9cff;
+    top: 0;
+    opacity:0;
+    transition: .5s
+    text-shadow: 0 2px 5px rgba(0,0,0,.5);
+}
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after
+{
+    opacity: 1;
+}
+
+Events/GeoJson
+Format for test location. Use existing GeoJson Coordinates.
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Title": "Event of the Day",
+        "Head": "Hackathon Event-School of Computing-Today 10-4",
+        "Description": "Coders welcome...",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.530101, 52.400199]
+      }
+    },
+Can be styled using format similar to below; 
+"style": {
+        "__comment": "Hackathon Event",
+        "fill":"BLUE",
+        "stroke-width":"4",
+        "fill-opacity":1
+    },
+    "className": {
+        "baseVal":"A class name"
+    }
+}
+
+

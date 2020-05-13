@@ -85,33 +85,38 @@
             <center><p>Thank you for using RGU Campus Map!
             <p>We value your feedback so please leave your rating and comments below.</p></center>
             <h3>Rate your Overall Experience</h3>
+            <form class="clearfix" action="https://formspree.io/mdowkbkn" method="POST">
             <div class="rating">
-                <input type="radio" name="star" id="star1"><label for="star1">
+                <input type="radio" name="name" id="Excellent"><label for="Excellent">
                 <p>Excellent</p>
             </label><br>
-                <input type="radio" name="star" id="star2"><label for="star2">
+                <input type="radio" name="name" id="Very Good"><label for="Very Good">
                 <p>Very Good</p>
             </label><br>
-                <input type="radio" name="star" id="star3"><label for="star3">
+                <input type="radio" name="name" id="star3"><label for="star3">
                 <p>Good</p>
             </label><br>
-                <input type="radio" name="star" id="star4"><label for="star4">
+                <input type="radio" name="name" id="star4"><label for="star4">
                 <p>Poor</p>
             </label><br>
-                <input type="radio" name="star" id="star5"><label for="star5">
+                <input type="radio" name="name" id="star5"><label for="star5">
                 <p>Very Poor</p>
 
             </label>
             </div>
+            </form>
         </section>
 
+
+
         <!-- COMMENTS SECTION START -->
-        <div class="col-md-6 col-md-offset-3 comments-section">
+        <div class="">
             <!-- comment form -->
-            <form class="clearfix" action="index.php" method="post" id="comment_form">
+            <form class="clearfix" action="https://formspree.io/mdowkbkn" method="POST" id="comment_form">
                 <h3>Share your Feedback &#x1F447;</h3>
-                <textarea name="comment_text" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
-                <input type="button" onclick="myFunction()" value="Submit" class="button">
+                <textarea name="message" id="comment_text" class="form-control" cols="30" rows="3"></textarea>
+                <input type="submit" onclick="myFunction()" value="Submit" class="button">
+
             </form>
             <!-- COMMENTS SECTION END -->
             <!--MAIN SECTION END-->
@@ -119,3 +124,4 @@
     </div>
 </body>
 </html>
+

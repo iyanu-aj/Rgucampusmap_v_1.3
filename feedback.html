@@ -24,26 +24,16 @@
             <p>Thank you for using RGUMaps.
             <p>We value your feedback so please leave your rating and comments below.</p>
             <h3>Rate your Overall Experience</h3>
-            <div class="rating">
-                <input type="radio" name="star" id="star1"><label for="star1">
-                <p>Excellent</p>
-            </label><br>
-                <input type="radio" name="star" id="star2"><label for="star2">
-                <p>Very Good</p>
-            </label><br>
-                <input type="radio" name="star" id="star3"><label for="star3">
-                <p>Good</p>
-            </label><br>
-                <input type="radio" name="star" id="star4"><label for="star4">
-                <p>Poor</p>
-            </label><br>
-                <input type="radio" name="star" id="star5"><label for="star5">
-                <p>Very Poor</p>
-
-            </label>
-            </div>
-            <br>
-            <br>
+            <form method="post"  action="aqq.php" enctype="multipart/form-data">
+                <label>Rating</label>
+                <select name ="ratingds">
+                    <option value="Poor">Poor</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Good">Good</option>
+                    <option value="Very Good">Very Good</option>
+                </select>
+                <br>
+                <br>
         </section>
         <br>
         <!-- COMMENTS SECTION START -->

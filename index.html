@@ -253,6 +253,7 @@ document.getElementById('pageBT').onclick = function() {
 
     <div id="map"></div>
     <nav id='filter-group' class='filter-group'></nav>
+    <script type="text/javascript" src = "assets/js/mapbox-map.js"></script>
     <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoiMTkxMzY0OCIsImEiOiJjazZxOGt0ZGUxYnpqM25seWs5dmd3OXAwIn0.1s0vMz3TjjKdS2bioM9_KQ';
         var map = new mapboxgl.Map({
@@ -415,7 +416,6 @@ document.getElementById('pageBT').onclick = function() {
         });
 
     </script>
-
     <script>
         var markers = {
             "type": "FeatureCollection",

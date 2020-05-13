@@ -165,7 +165,7 @@ form button:hover {
 .sidebar {
     font-family: Helvetica, Arial, Sans-serif;
     font-size: 13px;
-    height: 82.6%;
+    height: 100%;
     width:310px;
     position: absolute;
     z-index: 1;
